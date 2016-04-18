@@ -6,13 +6,13 @@ TBD means "To Be Determined", or "There Be Dragons", depending on how you would 
 Right now this is just an idea. This repo eventually will hold code, but for now just descriptions of the spec.
 
 ## Overview
-This effort started after I worked a little bit with protocol buffers. It is a wonderful message spec system that mostly lets you specify a class of message shapes. This is very useful if the sender and reciever have already agreed on message content, but we quickly realized that we wanted to perform multiple levels of validation on the messages coming in to our system. While there are some light validation capabilities in proto2, the group is actively moving in the other way by stripping the ability to have required fields in proto3. 
+This effort started after I worked a little bit with protocol buffers. It is a wonderful message spec system that mostly lets you specify a class of message shapes. This is very useful if the sender and reciever have already agreed on message content, but we quickly realized that we wanted to perform multiple levels of validation on the messages coming in to our system. While there are some light validation capabilities in proto2, the group behind protocol buffers is actively moving in the other way by stripping the ability to have required fields in proto3. 
 
-Validation of course has a host of packages and libraries, and in theory one could segregate the two functions. However validation and message encoding are linked at a very deep level. A validation schema by defnition defines some messages which are invalid. This limits the entropy of a group of messages tha follow a schema, and thereore the more restrictive the schema, the fewer bits will be needed to encode all possible valid messages.
+Validation of course has a host of packages and libraries, and in theory one could segregate the two functions. However validation and message encoding are linked at a very deep level. A validation schema defines some messages which are invalid, and therefore limits the entropy of a group of messages tha follow a schema. The more restrictive the schema, the fewer bits will be needed to encode all possible valid messages.
 
 Of course if you want to focus solely on compression, there are libraries to do as well, but they are often cpu intensive on either the encoding or decoding step, and there are a lot of features of good validation: heirarchical types, composting, some level of human interpribility, etc that are actually hindered by compression rather than helped.
 
-But, I do believe there plenty of interesting middle ground here where we can build something useful focused on validation and efficient message encoding as a unifed whole.
+But, I do believe there is an interesting middle ground here where we can build something useful focused on validation and efficient message encoding as a unifed whole. This is my attempt to see if that belief plays out.
 
 ## The Spec
 
