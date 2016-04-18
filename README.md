@@ -1,6 +1,6 @@
 # bh-tbd
 ## Beyond Here: TBD
-TBD means to be determined, or there be dragons, depending on how you would like to interpret it. That is fitting as this effort is largely about letting parsers interpret messages as they see fit, in a structured heirarchical way.
+TBD means "To Be Determined", or "There Be Dragons", depending on how you would like to interpret it. That is fitting as this effort is largely about letting parsers interpret messages as they see fit, in a structured heirarchical way.
 
 ### Status
 Right now this is just an idea. This repo eventually will hold code, but for now just descriptions of the spec.
@@ -31,7 +31,7 @@ There are 4 basic shapes (and 4 pointer types discussed later), encoded in 3 bit
 These shapres are sufficient to encode all possible message contents. A completely naieve schema can simply break apart a message into it's component shapes.
 
 ### Introduction to Types
-While self-describing shape is somewhat nice, it can also become very expensive very quickly. For example, a trivial array of `[ int16(), float32(), str(length=2) ]` would take 26 bytes to encode: 3 to define the array of 3 members, 5 to define an int of 2 bytes, 2 for the int value, 5 for define a float of 4 bytes, 4 for the float value, 5 to define the str of 2 bytes, and 2 bytes for the string. 3 + 5 + 2 + 5 + 4 + 5 + 2 = 26
+While self-describing messages are somewhat nice, they can also become very expensive very quickly. For example, a trivial array of `[121,3.14159265359,"ab"]` would take 26 bytes to encode (worse than json!): 3 to define the array of 3 members, 5 to define an int of 2 bytes, 2 for the int value, 5 for define a float of 4 bytes, 4 for the float value, 5 to define the str of 2 bytes, and 2 bytes for the string. 3 + 5 + 2 + 5 + 4 + 5 + 2 = 26
 
 However, by placing a restrictive schema on our message, many of the bytes becomes superflous. The above message segment might be given the following schema:
 ```
