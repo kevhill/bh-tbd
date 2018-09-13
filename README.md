@@ -22,7 +22,7 @@ The basic idea is to have messages with self-describing shape, and embeded type 
 The most basic unit of a message is a TBD. A TBD consists of 3 required shape bytes, an optional 2-byte type identifier, and one or more data bytes. They are called TBDs because a schema will elect NOT to parse the content a TBD if the schema does not place any restrictions upon it's content. However, some processing of the TBDs shape will be needed to understand when a TBD ends. Luckily, all TBDs describe their own shape!
 
 ### Basic Shapes
-There are 4 basic shapes (and 4 pointer types discussed later), encoded in 3 bits, and all shapes are paired with a size value encoded in 21 bits. The 5 shapes are:
+There are 4 basic shapes (and 4 pointer types discussed later), encoded in 3 bits, and all shapes are paired with a size value encoded in 21 bits. The 4 shapes are:
 * An anonymous object - (000) - In a properly formed message in a well defined schema language, it is garunteed that an appropriate schema will have enough information, based on the location and size of this blob, to understand and evaluate the content of the bytes. Size denotes number of bytes
 * An identified object - (001) - Here, even an appropriate schema may need an additional information to understand the message segments content. A 2-byte type identifier will follow after the size bits, but before object content. A common example would be to identify one of many optional attributes on a type. Size denotes number of bytes.
 * Array of multiple shapes - (010) - Each member will define it's own shape. Size is the number of member is the array.
